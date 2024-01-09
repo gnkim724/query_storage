@@ -1,5 +1,5 @@
 # QUERY_STORAGE
 업무쿼리 관리
-ERP - ASIS
-SERP - TOBE
-WMS
+1) ERP - ASIS
+2) SERP - TOBE
+3) WMS

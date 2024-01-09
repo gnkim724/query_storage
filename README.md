@@ -1,4 +1,4 @@
-# QUERY_STORAGE
+# sql
 업무쿼리 관리
 1) ERP
 2) SERP

@@ -1,11 +1,12 @@
 /*
 거래명세 조회
-ORD_NO : 주문번호
-IV_NO : 송장번호
-GI_TYP_CD : sotype(출고유형코드)
-GI_RAT : 출고율
-SALE_TYP_CD : saletrtype(판매유형코드_
 */
+
+-- ORD_NO : 주문번호
+-- IV_NO : 송장번호
+-- GI_TYP_CD : sotype(출고유형코드)
+-- GI_RAT : 출고율
+-- SALE_TYP_CD : saletrtype(판매유형코드_
 SELECT B.*
   FROM BIM_TRD_STTMT A
      , BIM_TRD_STTMT_DTL B
@@ -15,4 +16,20 @@ SELECT B.*
    AND A.SSN_CD = B.SSN_CD
    AND A.BRAND_CD = 'M'
    AND A.ORD_NO = 'M19F00702205'
+   AND A.GI_STS_CD = 'C';
+
+
+-- 인보이스 금액 확인
+SELECT SUM( CASE WHEN A.GI_TYP_CD <= 500 THEN B.GI_QTY ELSE B.GI_QTY * -1 END )       AS 출고수량
+     , SUM( CASE WHEN A.GI_TYP_CD <= 500 THEN B.GI_AMT ELSE B.GI_AMT * -1 END )       AS 출고금액
+     , SUM( CASE WHEN A.GI_TYP_CD <= 500 THEN B.VAT ELSE B.VAT * -1 END )             AS VAT
+     , SUM( CASE WHEN A.GI_TYP_CD <= 500 THEN B.FC_GI_AMT ELSE B.FC_GI_AMT * -1 END ) AS 외환출고금액
+  FROM BIM_TRD_STTMT A
+     , BIM_TRD_STTMT_DTL B
+ WHERE 1 = 1
+   AND A.BRAND_CD = B.BRAND_CD
+   AND A.ORD_NO = B.ORD_NO
+   AND A.SSN_CD = B.SSN_CD
+   AND A.BRAND_CD = 'ST'
+   AND A.ORD_NO = 'ST23F10003000001'
    AND A.GI_STS_CD = 'C';

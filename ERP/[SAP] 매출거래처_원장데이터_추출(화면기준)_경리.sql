@@ -47,8 +47,8 @@ SELECT A.BRAND
                  WHERE A.BRAND IN ('ST','V','A','W')
                    AND B.TYPE_CONTRACT LIKE '%'
 --                    AND A.SHOPCODE IN ('10004', '10005')
---                    AND A.CALDATE >= '2023-11-01'
-                   AND A.CALDATE <= '2023-12-31'
+                   AND A.CALDATE >= '2024-01-01'
+                   AND A.CALDATE <= '2024-03-31'
                    AND A.BDAMT <> 0
                  GROUP BY A.BRAND, A.SHOPCODE) D
          WHERE A.BRAND = B.BRAND
@@ -59,8 +59,8 @@ SELECT A.BRAND
            AND A.BRAND IN ('ST','V','A','W')
 --            AND A.SHOPCODE IN ('10004', '10005')
            AND B.TYPE_CONTRACT LIKE '%'
---            AND A.CALDATE >= '2023-11-01'
-           AND A.CALDATE <= '2023-12-31'
+           AND A.CALDATE >= '2024-01-01'
+           AND A.CALDATE <= '2024-03-31'
          GROUP BY A.BRAND, A.SHOPCODE, A.CALDATE, A.BDAMT
         HAVING SUM( A.GOODSQTY ) <> 0
             OR SUM( A.GOODSAMT ) <> 0

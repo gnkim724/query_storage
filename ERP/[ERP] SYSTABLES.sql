@@ -1,7 +1,7 @@
-/*
-SYSTABLES
-*/
 
+/******************************************
+            mainERP SYSTABLES
+*******************************************/
 -- mainERP 메뉴 코드
 SELECT *
   FROM SYSTABLES
@@ -61,3 +61,8 @@ SELECT *
 SELECT *
   FROM SYSTABLES A
  WHERE A.TBLNAME = 'type_zone';
+
+-- 외화 통화 fx_currency
+SELECT *
+  FROM SYSTABLES A
+ WHERE A.TBLNAME = 'fx_currency';

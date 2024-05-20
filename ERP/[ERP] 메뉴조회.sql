@@ -14,7 +14,7 @@ SELECT DISTINCT CASE
               , B.NAME_KOR AS LV2
               , A.NAME_KOR AS LV3
               , A.WINDOW   AS PB명
-  FROM (SELECT * FROM FNF.MENU WHERE 1 = 1 AND WINDOW = 'w_sa061_tax_print_rfid' AND MOFF = 'N') A
+  FROM (SELECT * FROM FNF.MENU WHERE 1 = 1 AND WINDOW = 'w_purch_accept_information_day' AND MOFF = 'N') A
      , FNF.MENU B
  WHERE 1 = 1
    AND B.MENUCODE = A.MENU_PARENT

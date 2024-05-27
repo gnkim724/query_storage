@@ -1,4 +1,6 @@
-/* stmt.findListHqShopSttmtList : 점별거래부 조회 */
+/*
+ * stmt.findListHqShopSttmtList : 점별거래부 조회
+ */
 SELECT STK.BRAND_CD
      , SHOP.SHOP_CD
      , SHOP.SHOP_ABBR_NM

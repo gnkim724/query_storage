@@ -1,8 +1,10 @@
 /*
- 영업/고객 관리 > 수선 진행현황 등록 > 입출고 내역 처리 (행낭)
+ * 영업/고객 관리 > 수선 진행현황 등록 > 입출고 내역 처리 (행낭)
  */
 
--- 브랜드 리스트 조회 (repair.getRprUseBrandList)
+/*
+ * repair.getRprUseBrandList : 브랜드 리스트 조회
+ */
 SELECT BRAND_CD
      , BRAND_CD    AS DATA
      , BRAND_EN_NM AS LABEL
@@ -12,8 +14,10 @@ SELECT BRAND_CD
  ORDER BY SORT;
 
 
-/* repair.findSummaryList: 입출고 처리내역 요약 */
--- BIM_RPR (수선), BIM_RV_RCPTN(수선처접수)
+/*
+ * repair.findSummaryList: 입출고 처리내역 요약
+ * BIM_RPR (수선), BIM_RV_RCPTN(수선처접수)
+ */
 SELECT '상담실 처리내역'            AS TITLE
      , NVL( SUM( B.M ), 0 )  AS M
      , NVL( SUM( B.I ), 0 )  AS I
@@ -93,7 +97,9 @@ SELECT '행랑실 미처리건'            AS TITLE
                    AND SHOP_SND_DE = '2024-03-08') A) B;
 
 
-/* repair.findCsProcList: 상담실 처리내역 리스트 */
+/*
+ * repair.findCsProcList: 상담실 처리내역 리스트
+ */
 SELECT DISTINCT RPR.RPR_RCPTN_NO                                                                                    -- 수선접수번호
               , FC_GET_NAME( 'SHOP_ABBR', RPR.SHOP_CD, '', '', '', '', RPR.BRAND_CD, '', '', '' ) AS SHOP_NM        -- 매장명
               , RPR.SHOP_CD                                                                                         -- 매장 코드
@@ -117,7 +123,9 @@ SELECT DISTINCT RPR.RPR_RCPTN_NO                                                
    AND RPR.SHOP_SND_DE = '2024-03-08';
 
 
-/*repair.findPouchList: 행낭실 스캔완료 리스트 */
+/*
+ * repair.findPouchList: 행낭실 스캔완료 리스트
+ */
 SELECT DISTINCT RPR.RPR_RCPTN_NO                                                                                    -- 수선접수번호
               , FC_GET_NAME( 'SHOP_ABBR', RPR.SHOP_CD, '', '', '', '', RPR.BRAND_CD, '', '', '' ) AS SHOP_NM        -- 매장명
               , RPR.SHOP_CD                                                                                         -- 매장 코드

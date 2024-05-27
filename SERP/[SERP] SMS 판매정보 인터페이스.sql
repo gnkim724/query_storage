@@ -1,0 +1,10 @@
+/**
+ * 매장 판매정보 수신 및 송신
+ */
+
+-- SMS 판매정보 수신 (SMS -> SERP)
+SELECT * FROM SERP_IF.IF_SMS_SALE_RCV;
+
+-- 판매 상세전송 (SERP -> SAP)
+SELECT * FROM SERP_IF.IF_SAP_SALE_DTL_SND ISSDS WHERE EAI_TRANS_FLAG = 'Y' AND SALE_DE < '20240501';
+

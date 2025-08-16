@@ -1,7 +1,6 @@
 /*
  * WMS, ERP 반품비가용 AP 재고 수량 비교
  */
-
 SELECT *
   FROM (SELECT NVL (X.BRAND_CD, Y.BRAND_CD)     AS BRAND_CD
              , NVL (X.SSN_CD, Y.SSN_CD)         AS SSN_CD
@@ -21,12 +20,14 @@ SELECT *
                        , SUM (RTN_QTY)     AS RTN_QTY
                     FROM SERP_IF.IF_WMS_STOCK_RCV
                    WHERE 1 = 1
-                     AND TO_CHAR (EAI_DATE, 'YYYY-MM-DD') = '2024-05-17'
+                     AND TO_CHAR (EAI_DATE, 'YYYY-MM-DD') = '2024-05-29'
                      --AND PROD_CD = 'DKBK1104N'
                      --AND COLOR_CD  = 'BES'
                      --AND SIZ_CD  = 'F'
-                     AND BRAND_CD = 'X'
-                     AND SSN_CD LIKE '23%'
+--                      AND BRAND_CD = 'X'
+--                      AND SSN_CD LIKE '23%'
+                        AND SSN_CD <> 'X'
+                   AND BRAND_CD <> 'A'
                 GROUP BY BRAND_CD, SSN_CD, PROD_CD, COLOR_CD, SIZ_CD) X
                FULL OUTER JOIN
                (  SELECT BRAND_CD
@@ -46,9 +47,11 @@ SELECT *
                              END)    AS RTN_QTY
                     FROM SERP_IF.IF_WMS_STOCK_SND
                    WHERE 1 = 1
-                     AND TO_CHAR (DATA_INPUT_DATE, 'YYYY-MM-DD') = '2024-05-17'
-                     AND BRAND_CD = 'X'
-                     AND SSN_CD LIKE '23%'
+                     AND TO_CHAR (DATA_INPUT_DATE, 'YYYY-MM-DD') = '2024-05-29'
+--                      AND BRAND_CD = 'X'
+--                      AND SSN_CD LIKE '23%'
+                        AND SSN_CD <> 'X'
+                   AND BRAND_CD <> 'A'
                 GROUP BY BRAND_CD, SSN_CD, PROD_CD, COLOR_CD, SIZ_CD) Y
                    ON X.BRAND_CD = Y.BRAND_CD
                   AND X.SSN_CD = Y.SSN_CD
@@ -58,3 +61,14 @@ SELECT *
  WHERE 1 = 1
    AND (WMS_QTY != ERP_QTY
      OR WMS_RTN != ERP_RTN);
+
+
+-- S-ERP -> WMS 재고 정보 전송
+SELECT *
+  FROM SERP_IF.IF_WMS_STOCK_SND
+ WHERE 1 = 1
+   AND PROD_CD = 'DWSB98043'
+   AND COLOR_CD = 'BKS'
+   AND SIZ_CD = 'S'
+   AND TO_CHAR( DATA_INPUT_DATE, 'YYYY-MM-DD' ) = '2024-05-24'
+   AND BRAND_CD = 'X';

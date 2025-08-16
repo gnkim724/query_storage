@@ -1,0 +1,47 @@
+/* stockFlow.insertMovSttmtByTrShopWhStk : 매장창고재고 이관 실행 > 이동명세 생성 */
+        INSERT
+          INTO BIM_MOV_STTMT
+               (
+                BRAND_CD
+               ,ORD_NO
+               ,SSN_CD
+               ,STD_SHOP_CD
+               ,ORD_DE
+               ,REQ_DE
+               ,GI_DE
+               ,GI_STS_CD
+               ,FROM_SYS_CD
+               ,FROM_LGT_SHOP_CD
+               ,FROM_AP_WH_CD
+               ,TO_SYS_CD
+               ,TO_LGT_SHOP_CD
+               ,TO_AP_WH_CD
+               ,WMS_SND_TGT_YN
+               ,WMS_IF_STCK_YN
+               ,INTG_LGT_CTR_YN
+               ,TRD_YN
+               ,INSR_ID
+               ,UPDR_ID
+               )
+        VALUES (
+                'I'
+               ,'I202409002273271'
+               ,'24S'
+               ,'90007'
+               ,'2024-09-19'
+               ,'2024-09-19'
+               ,'2024-09-19'
+               ,'C'
+               ,'SHOP'
+               ,'90007'
+               ,'I-90007-400'
+               ,'SHOP'
+               ,'90007'
+               ,'I-90007-200'
+               ,'N'
+               ,'N'
+               ,'N'
+               ,'N'
+               ,'GNKIM724'
+               ,'GNKIM724'
+               )
